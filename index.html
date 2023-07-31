@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ol>
+        <li>
+            Create 2 objects - parent and child. Attach methods to parent and use those methods in child object using parents prototype
+            <pre>
+function Parent(name) {
+  this.name = name;
+}
+
+Parent.prototype.sayHello = function() {
+  console.log(`Hello, my name is ${this.name}.`);
+};
+
+function Child(name, age) {
+  Parent.call(this, name);
+  this.age = age;
+}
+
+Child.prototype = Object.create(Parent.prototype);
+
+Child.prototype.introduce = function() {
+  console.log(`I am ${this.name} and I am ${this.age} years old.`);
+};
+
+const parentObj = new Parent("Parent");
+const childObj = new Child("Child", 5);
+
+parentObj.sayHello(); 
+childObj.sayHello(); 
+childObj.introduce();
+
+            </pre>
+        </li> <hr>
+        <li>
+            Write code to explain prototype chaining
+            <pre>
+function Parent(name) {
+  this.name = name;
+}
+
+Parent.prototype.sayHello = function() {
+  console.log(`Hello, my name is ${this.name}.`);
+};
+
+function Child(name, age) {
+  Parent.call(this, name);
+  this.age = age;
+}
+
+Child.prototype = Object.create(Parent.prototype);
+
+Child.prototype.introduce = function() {
+  console.log(`I am ${this.name} and I am ${this.age} years old.`);
+};
+
+const parentObj = new Parent("Parent");
+const childObj = new Child("Child", 5);
+
+parentObj.sayHello(); 
+childObj.sayHello(); 
+childObj.introduce();
+
+            </pre>
+        </li> <hr>
+        <li>
+            Add a method to calculate sum of all elements in Array in array's protype, use that method to calculate sum for multiple arrays
+            <pre>Array.prototype.calculateSum = function() {
+                let sum = 0;
+                for (let i = 0; i < this.length; i++) {
+                sum += this[i];
+                }
+                return sum;
+                };
+                const array1 = [1, 2, 3, 4, 5];
+                const array2 = [10, 20, 30];
+                const array3 = [2, 4, 6, 8];
+                console.log("Sum of array1:", array1.calculateSum());
+                console.log("Sum of array2:", array2.calculateSum());
+                console.log("Sum of array3:", array3.calculateSum());
+                output:
+                Sum of array1: 15
+                Sum of array2: 60
+                Sum of array3: 20</pre>
+        </li> <hr>
+        <li>
+            Write a JavaScript function to retrieve all the names of object's own and inherited properties.
+            <pre>function allKeys(obj) {
+                if (!isObject(obj)) return [];
+                var keys = [];
+                for (var key in obj) keys.push(key);
+                return keys;
+                }
+                function isObject(obj)
+                {
+                var type = typeof obj;
+                return type === 'function' || type === 'object' && !!obj;
+                }
+                function Student(name) {
+                this.name = name;
+                }
+                Student.prototype.rollno = true;
+                console.log(allKeys(new Student("Sara")));
+                output:
+                [ 'name', 'rollno' ]</pre>
+        </li>
+    </ol>
+</body>
+</html>
